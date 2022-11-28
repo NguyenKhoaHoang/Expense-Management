@@ -73,7 +73,7 @@ include('includes/global.php');
 
 //Get Header
 include('includes/header.php'); 
-echo"hello";
+echo"hi";
 
 //set global message notification
 $msgBox	="";
