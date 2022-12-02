@@ -50,6 +50,16 @@ if(isset($_POST['edit'])){
 	}
 
 
+//delete budget
+
+if(isset($_POST['deletebudget'])){
+		$BudgetId = $_POST['budgetid'];
+		$Delete = "DELETE FROM budget WHERE BudgetId = $BudgetId";
+		$DeleteI = mysqli_query($mysqli,$Delete);
+
+		$msgBox = alertBox($DeleteBudget);
+	}
+
 
 //Include Global page
 	include ('includes/global.php');
