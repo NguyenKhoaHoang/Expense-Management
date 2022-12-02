@@ -6,6 +6,32 @@ include('includes/Functions.php');
 //Include Notifications
 include ('includes/notification.php');
 
+// add new budget
+if (isset($_POST['submit'])) {
+
+		//check already add budget
+		$CategoryId = $_POST['category'];
+		$CheckBudget = "SELECT CategoryId from budget WHERE UserId = $UserId AND MONTH(Dates) = MONTH (CURRENT_DATE()) AND CategoryId = $CategoryId";
+		$CBudget = mysqli_query($mysqli, $CheckBudget);
+		if($Check= mysqli_num_rows($CBudget) > 0){
+
+				$msgBox = alertBox($AlreadyBudget);
+			}else{
+				$date		= date("Y-m-d");
+				$CategoryId = $_POST['category'];
+				$Amount		= clean($_POST['amount']);
+				//add new budget
+				$sql="INSERT INTO budget (UserId, CategoryId, Dates, Amount) VALUES (?,?,?,?)";
+				if($statement = $mysqli->prepare($sql)){
+
+					//bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
+					$statement->bind_param('iisi',$UserId, $CategoryId, $date, $Amount);
+					$statement->execute();
+				}
+
+				$msgBox = alertBox($SaveMsgBudget);
+			}
+	}
 
 
 
