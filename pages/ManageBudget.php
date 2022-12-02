@@ -61,6 +61,12 @@ if(isset($_POST['deletebudget'])){
 	}
 
 
+// history budget
+$Year 	= date("Y");
+$Month  = date("m");
+$Getbudgets = "SELECT b.BudgetId, b.CategoryId, b.Dates, b.Amount, c.CategoryName from budget b, category c WHERE YEAR(Dates) = $Year  AND MONTH(Dates) = $Month AND b.UserId = $UserId AND c.CategoryId = b.CategoryId";
+$Budgets = mysqli_query($mysqli, $Getbudgets);
+
 //Include Global page
 	include ('includes/global.php');
 	
