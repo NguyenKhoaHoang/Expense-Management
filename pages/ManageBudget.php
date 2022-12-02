@@ -34,6 +34,20 @@ if (isset($_POST['submit'])) {
 	}
 
 
+//Edit budget
+if(isset($_POST['edit'])){
+		$BudgetsIds = $_POST['budgetsids'];
+		$Amount = clean($_POST['amountedit']);
+
+		$sql="UPDATE budget SET Amount = ? WHERE BudgetId = $BudgetsIds";
+		if($statement = $mysqli->prepare($sql)){
+			//bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
+			$statement->bind_param('i', $Amount);
+			$statement->execute();
+
+		}
+		$msgBox = alertBox($UpdateMsgBudget);
+	}
 
 
 
