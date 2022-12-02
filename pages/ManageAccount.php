@@ -6,6 +6,17 @@ include('includes/Functions.php');
 //Include Notifications
 include ('includes/notification.php');
 
+// Search category
+if (isset($_POST['searchbtn'])) {
+	$SearchTerm = $_POST['search'];
+	$GetList = "SELECT AccountId, AccountNama FROM account WHERE UserId = $UserId  AND AccountName
+				like '%$SearchTerm%' ORDER BY AccountName ASC";
+$GetListCategory = mysqli_query($mysqli,$GetList);
+
+}
+
+
+
 //Include Global page
 	include ('includes/global.php');
 	
