@@ -54,6 +54,9 @@
                         <div class="panel-heading">
                             Budget based on Graph
                         </div>
+                        <div class="panel-body">
+                            <p>Please add your budget with your category and for month and year </p>
+                        </div>
                         <div class="panel-footer">
 
                         </div>
