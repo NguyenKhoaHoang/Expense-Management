@@ -6,6 +6,16 @@ include('includes/Functions.php');
 //Include Notifications
 include ('includes/notification.php');
 
+//delete account
+
+if(isset($_POST['submitin'])){
+		$CategoryIds = $_POST['categoryid'];
+		$Delete = "DELETE FROM account WHERE AccountId = $CategoryIds";
+		$DeleteI = mysqli_query($mysqli,$Delete);
+
+		$msgBox = alertBox($DeleteAccount);
+	}
+
 //Edit account
 if(isset($_POST['edit'])){
 		$CategoryIds = $_POST['categoryid'];
