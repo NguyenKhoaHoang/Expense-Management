@@ -6,6 +6,23 @@ include('includes/Functions.php');
 //Include Notifications
 include ('includes/notification.php');
 
+//Edit account
+if(isset($_POST['edit'])){
+		$CategoryIds = $_POST['categoryid'];
+		$CategoryName = $_POST['categoryedit'];
+
+		$sql="UPDATE account SET AccountName = ? WHERE AccountId = $CategoryIds";
+		if($statement = $mysqli->prepare($sql)){
+			//bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
+			$statement->bind_param('s', $CategoryName);
+			$statement->execute();
+
+		}
+		$msgBox = alertBox($UpdateMsgAccount);
+	}
+
+
+
 // add new category
 if (isset($_POST['submit'])) {
 
