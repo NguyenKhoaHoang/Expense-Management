@@ -6,6 +6,21 @@ include('includes/Functions.php');
 //Include Notifications
 include ('includes/notification.php');
 
+// add new category
+if (isset($_POST['submit'])) {
+
+		$category	= $mysqli->real_escape_string($_POST["account"]);
+		//add new category
+		$sql="INSERT INTO account (UserId, AccountName) VALUES (?,?)";
+		if($statement = $mysqli->prepare($sql)){
+			//bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
+			$statement->bind_param('is',$UserId, $category);
+			$statement->execute();
+		}
+		$msgBox = alertBox($SaveMsgAccount);
+
+	}
+
 //Get list category
 $GetList = "SELECT AccountId, AccountName FROM account WHERE UserId = $UserId ORDER BY AccountName ASC";
 $GetListCategory = mysqli_query($mysqli,$GetList);
