@@ -6,6 +6,10 @@ include('includes/Functions.php');
 //Include Notifications
 include ('includes/notification.php');
 
+//Get list category
+$GetList = "SELECT AccountId, AccountName FROM account WHERE UserId = $UserId ORDER BY AccountName ASC";
+$GetListCategory = mysqli_query($mysqli,$GetList);
+
 // Search category
 if (isset($_POST['searchbtn'])) {
 	$SearchTerm = $_POST['search'];
