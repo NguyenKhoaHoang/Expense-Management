@@ -8,6 +8,10 @@ include ('includes/notification.php');
 
 //Include Global page
 include ('includes/global.php');
+
+//Get list category
+$GetList = "SELECT CategoryId, CategoryName FROM category WHERE Level = 2 AND UserId = $UserId ORDER BY CategoryName ASC";
+$GetListCategory = mysqli_query($mysqli,$GetList); 
 	
 	
 ?>
