@@ -9,6 +9,23 @@ include ('includes/notification.php');
 //Include Global page
 include ('includes/global.php');
 
+// add new category
+if (isset($_POST['submit'])) {
+		
+    $category	= $mysqli->real_escape_string($_POST["category"]);	
+    $level		= 2;
+    //add new category
+    $sql="INSERT INTO category (UserId, CategoryName, Level) VALUES (?,?,?)";
+    if($statement = $mysqli->prepare($sql)){
+        //bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
+        $statement->bind_param('isi',$UserId, $category, $level);	
+        $statement->execute();
+    }
+    $msgBox = alertBox($SaveMsgCategory);	
+    
+}
+
+
 //Get list category
 $GetList = "SELECT CategoryId, CategoryName FROM category WHERE Level = 2 AND UserId = $UserId ORDER BY CategoryName ASC";
 $GetListCategory = mysqli_query($mysqli,$GetList); 
