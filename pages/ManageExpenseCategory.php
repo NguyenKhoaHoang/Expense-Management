@@ -9,6 +9,16 @@ include ('includes/notification.php');
 //Include Global page
 include ('includes/global.php');
 
+//delete category
+
+if(isset($_POST['submitin'])){
+    $CategoryIds = $_POST['categoryid'];
+    $Delete = "DELETE FROM category WHERE CategoryId = $CategoryIds";
+    $DeleteI = mysqli_query($mysqli,$Delete); 
+    
+    $msgBox = alertBox($DeleteCategory);
+}
+
 // add new category
 if (isset($_POST['submit'])) {
 		
