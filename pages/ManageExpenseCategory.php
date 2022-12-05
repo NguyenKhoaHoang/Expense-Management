@@ -54,7 +54,13 @@ if (isset($_POST['submit'])) {
 //Get list category
 $GetList = "SELECT CategoryId, CategoryName FROM category WHERE Level = 2 AND UserId = $UserId ORDER BY CategoryName ASC";
 $GetListCategory = mysqli_query($mysqli,$GetList); 
-	
+
+// Search category
+if (isset($_POST['searchbtn'])) {
+	$SearchTerm = $_POST['search'];
+	$GetList = "SELECT CategoryId, CategoryName FROM category WHERE Level = 2 AND UserId = $UserId  AND CategoryName
+				like '%$SearchTerm%' ORDER BY CategoryName ASC";
+$GetListCategory = mysqli_query($mysqli,$GetList); 
 	
 ?>
 
