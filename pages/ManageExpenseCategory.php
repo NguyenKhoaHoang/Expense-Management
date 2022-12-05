@@ -19,6 +19,21 @@ if(isset($_POST['submitin'])){
     $msgBox = alertBox($DeleteCategory);
 }
 
+//Edit Category
+if(isset($_POST['edit'])){
+    $CategoryIds = $_POST['categoryid'];
+    $CategoryName = $_POST['categoryedit'];
+    
+    $sql="UPDATE category SET CategoryName = ? WHERE CategoryId = $CategoryIds";
+    if($statement = $mysqli->prepare($sql)){
+        //bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
+        $statement->bind_param('s', $CategoryName);	
+        $statement->execute();
+        
+    }
+    $msgBox = alertBox($UpdateMsgCategory);
+}
+
 // add new category
 if (isset($_POST['submit'])) {
 		
