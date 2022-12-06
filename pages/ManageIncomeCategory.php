@@ -11,6 +11,13 @@ include ('includes/notification.php');
 $GetList = "SELECT CategoryId, CategoryName FROM category WHERE Level = 1 AND UserId = $UserId ORDER BY CategoryName ASC";
 $GetListCategory = mysqli_query($mysqli,$GetList); 
 
+// Search category
+if (isset($_POST['searchbtn'])) {
+	$SearchTerm = $_POST['search'];
+	$GetList = "SELECT CategoryId, CategoryName FROM category WHERE Level = 1 AND UserId = $UserId  AND CategoryName
+				like '%$SearchTerm%' ORDER BY CategoryName ASC";
+$GetListCategory = mysqli_query($mysqli,$GetList); 
+
 //Include Global page
 include ('includes/global.php');
 	
