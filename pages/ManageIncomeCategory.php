@@ -6,6 +6,21 @@ include('includes/Functions.php');
 //Include Notifications
 include ('includes/notification.php');
 
+// add new category
+if (isset($_POST['submit'])) {
+		
+    $category	= $mysqli->real_escape_string($_POST["category"]);	
+    $level		= 1;
+    //add new category
+    $sql="INSERT INTO category (UserId, CategoryName, Level) VALUES (?,?,?)";
+    if($statement = $mysqli->prepare($sql)){
+        //bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
+        $statement->bind_param('isi',$UserId, $category, $level);	
+        $statement->execute();
+    }
+    $msgBox = alertBox($SaveMsgCategory);	
+    
+}
 
 //Get list category
 $GetList = "SELECT CategoryId, CategoryName FROM category WHERE Level = 1 AND UserId = $UserId ORDER BY CategoryName ASC";
