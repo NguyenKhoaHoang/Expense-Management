@@ -24,6 +24,15 @@ if (isset($_POST['submitin'])) {
 $GetExpenseHistory = "SELECT * from bills left join category on bills.CategoryId = category.CategoryId left join account on bills.AccountId = account.AccountId where bills.UserId = $UserId ORDER BY bills.Dates DESC";
 $ExpenseHistory = mysqli_query($mysqli,$GetExpenseHistory); 
 
+// Get all by month Expense
+$GetAllBillsDate    = "SELECT SUM(Amount) AS Amount FROM bills WHERE UserId = $UserId AND MONTH(Dates) = MONTH (CURRENT_DATE())";
+$GetABillsDate      = mysqli_query($mysqli, $GetAllBillsDate);
+$BillsColDate       = mysqli_fetch_assoc($GetABillsDate);
+
+// Get all by today Expense
+$GetAllBillsToday       = "SELECT SUM(Amount) AS Amount FROM bills WHERE UserId = $UserId AND Dates = CURRENT_DATE()";
+$GetABillsDateToday         = mysqli_query($mysqli, $GetAllBillsToday);
+$BillsColDateToday          = mysqli_fetch_assoc($GetABillsDateToday);
 
 
 // Search expense
@@ -174,4 +183,3 @@ $ExpenseHistory = mysqli_query($mysqli,$GetExpenseHistory);
         </div>
         <!-- /#page-wrapper -->
    
-
