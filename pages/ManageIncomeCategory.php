@@ -7,8 +7,12 @@ include('includes/Functions.php');
 include ('includes/notification.php');
 
 
+//Get list category
+$GetList = "SELECT CategoryId, CategoryName FROM category WHERE Level = 1 AND UserId = $UserId ORDER BY CategoryName ASC";
+$GetListCategory = mysqli_query($mysqli,$GetList); 
+
 //Include Global page
-	include ('includes/global.php');
+include ('includes/global.php');
 	
 	
 ?>
