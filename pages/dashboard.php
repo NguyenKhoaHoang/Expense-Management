@@ -30,6 +30,16 @@ $GetExpenseHistory = "SELECT * from bills left join category on bills.CategoryId
 $ExpenseHistory = mysqli_query($mysqli,$GetExpenseHistory); 
 
 
+// Get all by month Income
+$GetAllIncomeDate 	 = "SELECT SUM(Amount) AS Amount FROM assets WHERE UserId = $UserId AND MONTH(Date) = MONTH (CURRENT_DATE())";
+$GetAIncomeDate		 = mysqli_query($mysqli, $GetAllIncomeDate);
+$IncomeColDate 		 = mysqli_fetch_assoc($GetAIncomeDate);
+
+// Get all by month Expense
+$GetAllExpenseDate 	 = "SELECT SUM(Amount) AS Amount FROM bills WHERE UserId = $UserId AND MONTH(Dates) = MONTH (CURRENT_DATE())";
+$GetAExpenseDate		 = mysqli_query($mysqli, $GetAllExpenseDate);
+$ExpenseColDate 		 = mysqli_fetch_assoc($GetAExpenseDate);
+
 
 //Include Global page
 	include ('includes/global.php');
