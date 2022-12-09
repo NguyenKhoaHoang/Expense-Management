@@ -41,6 +41,22 @@ $GetAExpenseDate		 = mysqli_query($mysqli, $GetAllExpenseDate);
 $ExpenseColDate 		 = mysqli_fetch_assoc($GetAExpenseDate);
 
 
+// Budget Progress
+$Getbudgets = "SELECT AmountIncome As Amount, (AmountIncome - AmountExpense) As Totals, AmountExpense/(AmountIncome - AmountExpense) * 100/100 AS Per,CategoryName
+					  FROM ( SELECT  UserId,CategoryId, 
+                      SUM(Amount) AS AmountExpense
+                      FROM bills
+				      GROUP BY CategoryId) AS b
+					  LEFT JOIN ( SELECT  CategoryId,
+                      SUM(Amount) AmountIncome
+				      FROM budget WHERE MONTH(Dates) = MONTH (CURRENT_DATE())
+					  GROUP BY CategoryId) AS a ON b.CategoryId = a.CategoryId
+                      LEFT JOIN (SELECT CategoryId, CategoryName 
+                      FROM category
+                      GROUP BY CategoryId) AS c
+					  ON b.CategoryId = c.CategoryId WHERE b.UserId = $UserId";
+$Budgets = mysqli_query($mysqli, $Getbudgets);
+
 
 //Include Global page
 	include ('includes/global.php');
@@ -225,6 +241,42 @@ $ExpenseColDate 		 = mysqli_fetch_assoc($GetAExpenseDate);
                             
                         </div>
                         <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+									<?php while($BudgetCols =mysqli_fetch_assoc($Budgets)) { 
+										
+										// calculate out expense
+										$Out	= ($BudgetCols['Amount'] - $BudgetCols['Totals']);
+										
+										$Exceed = Percentages($BudgetCols['Per']/$Out).' %';
+
+										if($Exceed<0 OR $Exceed >100){
+												$Exceed = '<label class="label label-danger">Over Budget</label>';
+												
+											}else{
+                                                $Exceed = 100*$BudgetCols['Per']/$Out.' %';
+                                            }
+										
+										?>
+											<div>
+											<p>
+                                                 
+												<label class="label label-info"><?php echo $BudgetCols['CategoryName'];?></label> 
+												<span class="pull-right text-muted"><?php echo $Budgetss;?> <?php echo $ColUser['Currency'].' '.number_format($BudgetCols['Amount']);?></span>
+											</p>
+											
+											<div class="text-right panel panel-yellow"><div class="panel-heading"><?php echo $Outs;?>: <?php echo $ColUser['Currency'].' '.number_format($Out);?> <?php echo $RemainingBudget;?>: <?php echo $ColUser['Currency'].' '.number_format($BudgetCols['Totals']);?></div></div><br/>
+										</div>
+										<?php } ?>
+                                </div>
+                                <div class="text-center"></div>
+                                <!-- /.col-lg-4 (nested) -->
+                                
+                                <!-- /.col-lg-8 (nested) -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
