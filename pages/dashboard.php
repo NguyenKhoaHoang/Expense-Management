@@ -41,6 +41,23 @@ $GetAExpenseDate		 = mysqli_query($mysqli, $GetAllExpenseDate);
 $ExpenseColDate 		 = mysqli_fetch_assoc($GetAExpenseDate);
 
 
+// Budget Progress
+$Getbudgets = "SELECT AmountIncome As Amount, (AmountIncome - AmountExpense) As Totals, AmountExpense/(AmountIncome - AmountExpense) * 100/100 AS Per,CategoryName
+					  FROM ( SELECT  UserId,CategoryId, 
+                      SUM(Amount) AS AmountExpense
+                      FROM bills
+				      GROUP BY CategoryId) AS b
+					  LEFT JOIN ( SELECT  CategoryId,
+                      SUM(Amount) AmountIncome
+				      FROM budget WHERE MONTH(Dates) = MONTH (CURRENT_DATE())
+					  GROUP BY CategoryId) AS a ON b.CategoryId = a.CategoryId
+                      LEFT JOIN (SELECT CategoryId, CategoryName 
+                      FROM category
+                      GROUP BY CategoryId) AS c
+					  ON b.CategoryId = c.CategoryId WHERE b.UserId = $UserId";
+$Budgets = mysqli_query($mysqli, $Getbudgets);
+
+
 //Include Global page
 	include ('includes/global.php');
 ?>
