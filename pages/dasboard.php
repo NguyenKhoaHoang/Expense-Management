@@ -21,42 +21,6 @@ $ExpenseCol          = mysqli_fetch_assoc($GetAExpense);
 //Count current totals Income
 $CountTotals = $IncomeCol['Amount'] - $ExpenseCol['Amount'];
 
-//Get Recent Income History
-$GetIncomeHistory = "SELECT * from assets left join category on assets.CategoryId = category.CategoryId left join account on assets.AccountId = account.AccountId where assets.UserId = $UserId ORDER BY assets.Date DESC LIMIT 10";
-$IncomeHistory = mysqli_query($mysqli,$GetIncomeHistory); 
-
-//Get Recent Expense History
-$GetExpenseHistory = "SELECT * from bills left join category on bills.CategoryId = category.CategoryId left join account on bills.AccountId = account.AccountId where bills.UserId = $UserId ORDER BY bills.Dates DESC LIMIT 10";
-$ExpenseHistory = mysqli_query($mysqli,$GetExpenseHistory); 
-
-
-// Get all by month Income
-$GetAllIncomeDate 	 = "SELECT SUM(Amount) AS Amount FROM assets WHERE UserId = $UserId AND MONTH(Date) = MONTH (CURRENT_DATE())";
-$GetAIncomeDate		 = mysqli_query($mysqli, $GetAllIncomeDate);
-$IncomeColDate 		 = mysqli_fetch_assoc($GetAIncomeDate);
-
-// Get all by month Expense
-$GetAllExpenseDate 	 = "SELECT SUM(Amount) AS Amount FROM bills WHERE UserId = $UserId AND MONTH(Dates) = MONTH (CURRENT_DATE())";
-$GetAExpenseDate		 = mysqli_query($mysqli, $GetAllExpenseDate);
-$ExpenseColDate 		 = mysqli_fetch_assoc($GetAExpenseDate);
-
-
-// Budget Progress
-$Getbudgets = "SELECT AmountIncome As Amount, (AmountIncome - AmountExpense) As Totals, AmountExpense/(AmountIncome - AmountExpense) * 100/100 AS Per,CategoryName
-					  FROM ( SELECT  UserId,CategoryId, 
-                      SUM(Amount) AS AmountExpense
-                      FROM bills
-				      GROUP BY CategoryId) AS b
-					  LEFT JOIN ( SELECT  CategoryId,
-                      SUM(Amount) AmountIncome
-				      FROM budget WHERE MONTH(Dates) = MONTH (CURRENT_DATE())
-					  GROUP BY CategoryId) AS a ON b.CategoryId = a.CategoryId
-                      LEFT JOIN (SELECT CategoryId, CategoryName 
-                      FROM category
-                      GROUP BY CategoryId) AS c
-					  ON b.CategoryId = c.CategoryId WHERE b.UserId = $UserId";
-$Budgets = mysqli_query($mysqli, $Getbudgets);
-
 
 //Include Global page
 	include ('includes/global.php');
