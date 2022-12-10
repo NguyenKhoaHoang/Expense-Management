@@ -8,13 +8,13 @@ include ('includes/notification.php');
 
 // add new budget
 if (isset($_POST['submit'])) {
-
+		
 		//check already add budget
 		$CategoryId = $_POST['category'];
 		$CheckBudget = "SELECT CategoryId from budget WHERE UserId = $UserId AND MONTH(Dates) = MONTH (CURRENT_DATE()) AND CategoryId = $CategoryId";
 		$CBudget = mysqli_query($mysqli, $CheckBudget);
 		if($Check= mysqli_num_rows($CBudget) > 0){
-
+			
 				$msgBox = alertBox($AlreadyBudget);
 			}else{
 				$date		= date("Y-m-d");
@@ -23,14 +23,14 @@ if (isset($_POST['submit'])) {
 				//add new budget
 				$sql="INSERT INTO budget (UserId, CategoryId, Dates, Amount) VALUES (?,?,?,?)";
 				if($statement = $mysqli->prepare($sql)){
-
+					
 					//bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
-					$statement->bind_param('iisi',$UserId, $CategoryId, $date, $Amount);
+					$statement->bind_param('iisi',$UserId, $CategoryId, $date, $Amount);	
 					$statement->execute();
 				}
 
 				$msgBox = alertBox($SaveMsgBudget);
-			}
+			}	
 	}
 
 
@@ -38,13 +38,13 @@ if (isset($_POST['submit'])) {
 if(isset($_POST['edit'])){
 		$BudgetsIds = $_POST['budgetsids'];
 		$Amount = clean($_POST['amountedit']);
-
+		
 		$sql="UPDATE budget SET Amount = ? WHERE BudgetId = $BudgetsIds";
 		if($statement = $mysqli->prepare($sql)){
 			//bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
-			$statement->bind_param('i', $Amount);
+			$statement->bind_param('i', $Amount);	
 			$statement->execute();
-
+			
 		}
 		$msgBox = alertBox($UpdateMsgBudget);
 	}
@@ -55,8 +55,8 @@ if(isset($_POST['edit'])){
 if(isset($_POST['deletebudget'])){
 		$BudgetId = $_POST['budgetid'];
 		$Delete = "DELETE FROM budget WHERE BudgetId = $BudgetId";
-		$DeleteI = mysqli_query($mysqli,$Delete);
-
+		$DeleteI = mysqli_query($mysqli,$Delete); 
+		
 		$msgBox = alertBox($DeleteBudget);
 	}
 

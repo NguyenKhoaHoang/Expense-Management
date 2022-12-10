@@ -274,6 +274,8 @@ $UserInfos 		 = mysqli_fetch_assoc($GetUserq);
         <!-- /#page-wrapper -->
    
 <script>
+
+
     $(function() {
 		
      $('.notification').tooltip({

@@ -193,4 +193,3 @@ $BillToday              	= $BillsColDateToday['Amount'];
 
     });
     </script>
-<!-- acd -->

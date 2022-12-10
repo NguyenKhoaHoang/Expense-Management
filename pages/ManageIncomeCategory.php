@@ -9,44 +9,46 @@ include ('includes/notification.php');
 //delete category
 
 if(isset($_POST['submitin'])){
-    $CategoryIds = $_POST['categoryid'];
-    $Delete = "DELETE FROM category WHERE CategoryId = $CategoryIds";
-    $DeleteI = mysqli_query($mysqli,$Delete); 
-    
-    $msgBox = alertBox($DeleteCategory);
-}
+		$CategoryIds = $_POST['categoryid'];
+		$Delete = "DELETE FROM category WHERE CategoryId = $CategoryIds";
+		$DeleteI = mysqli_query($mysqli,$Delete); 
+		
+		$msgBox = alertBox($DeleteCategory);
+	}
 
 //Edit Category
 if(isset($_POST['edit'])){
-    $CategoryIds = $_POST['categoryid'];
-    $CategoryName = $_POST['categoryedit'];
-    
-    $sql="UPDATE category SET CategoryName = ? WHERE CategoryId = $CategoryIds";
-    if($statement = $mysqli->prepare($sql)){
-        //bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
-        $statement->bind_param('s', $CategoryName);	
-        $statement->execute();
-        
-    }
-    $msgBox = alertBox($UpdateMsgCategory);
-}
+		$CategoryIds = $_POST['categoryid'];
+		$CategoryName = $_POST['categoryedit'];
+		
+		$sql="UPDATE category SET CategoryName = ? WHERE CategoryId = $CategoryIds";
+		if($statement = $mysqli->prepare($sql)){
+			//bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
+			$statement->bind_param('s', $CategoryName);	
+			$statement->execute();
+			
+		}
+		$msgBox = alertBox($UpdateMsgCategory);
+	}
+
+
 
 // add new category
 if (isset($_POST['submit'])) {
 		
-    $category	= $mysqli->real_escape_string($_POST["category"]);	
-    $level		= 1;
-    //add new category
-    $sql="INSERT INTO category (UserId, CategoryName, Level) VALUES (?,?,?)";
-    if($statement = $mysqli->prepare($sql)){
-        //bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
-        $statement->bind_param('isi',$UserId, $category, $level);	
-        $statement->execute();
-    }
-    $msgBox = alertBox($SaveMsgCategory);	
-    
-}
-
+		$category	= $mysqli->real_escape_string($_POST["category"]);	
+		$level		= 1;
+		//add new category
+		$sql="INSERT INTO category (UserId, CategoryName, Level) VALUES (?,?,?)";
+		if($statement = $mysqli->prepare($sql)){
+			//bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
+			$statement->bind_param('isi',$UserId, $category, $level);	
+			$statement->execute();
+		}
+		$msgBox = alertBox($SaveMsgCategory);	
+		
+	}
+	
 //Get list category
 $GetList = "SELECT CategoryId, CategoryName FROM category WHERE Level = 1 AND UserId = $UserId ORDER BY CategoryName ASC";
 $GetListCategory = mysqli_query($mysqli,$GetList); 
@@ -57,9 +59,13 @@ if (isset($_POST['searchbtn'])) {
 	$GetList = "SELECT CategoryId, CategoryName FROM category WHERE Level = 1 AND UserId = $UserId  AND CategoryName
 				like '%$SearchTerm%' ORDER BY CategoryName ASC";
 $GetListCategory = mysqli_query($mysqli,$GetList); 
+	
+}
+
+
 
 //Include Global page
-include ('includes/global.php');
+	include ('includes/global.php');
 	
 	
 ?>
@@ -233,4 +239,4 @@ include ('includes/global.php');
     })
 
     });
-</script>
+    </script>

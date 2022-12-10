@@ -9,7 +9,7 @@ include ('includes/notification.php');
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-  <title>Money Manager</title>
+  <title>Expense Manager</title>
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -32,7 +32,7 @@ include ('includes/notification.php');
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <link rel="icon" href="https://www.kindpng.com/picc/m/317-3178570_dollar-bill-icon-png-transparent-png.png">
      <script src="js/jquery-1.11.0.js"></script>
      <script src="js/plugins/metisMenu/metisMenu.js"></script>
 </head>
@@ -51,7 +51,7 @@ include ('includes/notification.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Money Manager</a>
+                <a class="navbar-brand" href="index.php">Expense Manager</a>
             </div>
             <!-- /.navbar-header -->
 
