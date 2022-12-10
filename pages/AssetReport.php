@@ -82,7 +82,7 @@ include('includes/global.php');
 		echo $msgBox;
 	} ?>
 	<a href="index.php?page=Transaction" class="btn white btn-success "><i class="fa fa-plus"></i> <?php echo $NewTransaction; ?></a>
-	<a href="pages/IncomeReportPdf.php?filter=<?php echo $SearchTerm; ?>" class="btn white btn-warning"><i class="glyphicon glyphicon-download-alt"></i> <?php echo $DownloadIncomeReports; ?></a>
+	<!-- <a href="pages/IncomeReportPdf.php?filter=<?php echo $SearchTerm; ?>" class="btn white btn-warning"><i class="glyphicon glyphicon-download-alt"></i> <?php echo $DownloadIncomeReports; ?></a> -->
 	<a href="pages/IncomeReportCSV.php?filter=<?php echo $SearchTerm; ?>" class="btn white btn-warning"><i class="glyphicon glyphicon-download-alt"></i> <?php echo $DownloadIncomeCSV; ?></a>
 	<div class="row">
 

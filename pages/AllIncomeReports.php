@@ -178,7 +178,7 @@ include('includes/global.php');
 
 		<!-- /.col-lg-4 -->
 	</div>
-	<a href="pages/IncomeReportPdf.php?filter=<?php echo $SearchTerm; ?>" class="btn white btn-warning"><i class="glyphicon glyphicon-download-alt"></i> <?php echo $DownloadIncomeReports; ?></a>
+	<!-- <a href="pages/IncomeReportPdf.php?filter=<?php echo $SearchTerm; ?>" class="btn white btn-warning"><i class="glyphicon glyphicon-download-alt"></i> <?php echo $DownloadIncomeReports; ?></a> -->
 	<a href="pages/IncomeReportCSV.php?filter=<?php echo $SearchTerm; ?>" class="btn white btn-warning"><i class="glyphicon glyphicon-download-alt"></i> <?php echo $DownloadIncomeCSV; ?></a>
 	<!-- /.row -->
 	<div class="row">
