@@ -40,6 +40,10 @@ $Dount = mysqli_query($mysqli, $GetAccountDount);
 $GetAccountDounts = "SELECT category.CategoryName, SUM(bills.amount) AS Amount FROM category, bills where category.CategoryId=bills.CategoryId AND category.Level = 2 AND bills.UserId = $UserId GROUP BY bills.CategoryId";
 $Dounts = mysqli_query($mysqli, $GetAccountDounts);
 
+$GetAccountDountss = "SELECT account.AccountName, SUM(bills.amount) AS Amount FROM account, bills where account.AccountId=bills.AccountId AND bills.UserId = $UserId group by account.AccountName";
+$Dountss = mysqli_query($mysqli, $GetAccountDountss);
+
+
 // dashboard income vs expense
 $GetAccountDountvs = "SELECT AmountExpense, AmountIncome
 					  FROM (  SELECT  UserId, 

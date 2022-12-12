@@ -133,12 +133,12 @@ include ('includes/notification.php');
                                 <li>
                                     <a <?php ActiveClass("index.php?page=IncomeVsExpense");?> id="subitem" href="index.php?page=IncomeVsExpense"><i class="fa fa-caret-right"> </i> <?php echo $IncomeVsExpense;?></a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a <?php ActiveClass("index.php?page=IncomeCalender");?> id="subitem" href="index.php?page=IncomeCalender"><i class="fa fa-caret-right"> </i> <?php echo $IncomeCalender;?></a>
-                                </li>
-                                <li>
+                                </li> -->
+                                <!-- <li>
                                     <a <?php ActiveClass("index.php?page=ExpenseCalender");?> id="subitem" href="index.php?page=ExpenseCalender"><i class="fa fa-caret-right"> </i> <?php echo $ExpenseCalender;?></a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <a <?php ActiveClass("index.php?page=AllIncomeReports");?> id="subitem" href="index.php?page=AllIncomeReports"><i class="fa fa-caret-right"></i> <?php echo $IncomeReportsM ;?></a>
                                 </li>

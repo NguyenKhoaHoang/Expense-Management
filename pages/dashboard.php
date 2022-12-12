@@ -213,6 +213,7 @@ $Budgets = mysqli_query($mysqli, $Getbudgets);
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="table-responsive">
+                                    <span>Total Cash In</span>
                                     <table class="table table-bordered table-hover table-striped">
                                         <thead>
                                                 <tr>
@@ -229,6 +230,26 @@ $Budgets = mysqli_query($mysqli, $Getbudgets);
                                                <?php } ?>   
                                             </tbody>
                                     </table>
+                                    <span>Total Cash Out</span>
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                                <tr>
+                                                    <th><?php echo $Title;?></th>
+                                                    <th><?php echo $Amount;?></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                 <?php while($col = mysqli_fetch_assoc($Dountss)){ ?>
+                                                <tr>
+                                                    <td><?php echo $col['AccountName'];?></td>
+                                                    <td class="text-right"> -<?php echo $ColUser['Currency'].' '.number_format($col['Amount']);?></td>
+                                                </tr>
+                                               <?php } ?>
+                                                  
+                                            </tbody>
+                                    </table>
+
+                                    
                                 </div>
                             </div>
                             </div>

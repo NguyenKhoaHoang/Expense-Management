@@ -292,8 +292,10 @@ if (isset($_POST['signup'])) {
 									<input class="form-control" placeholder="<?php echo $RepeatPassword; ?>" name="rpassword" type="password" value="">
 								</div>
 								<hr>
-								<button type="submit" name="signup" class="btn btn-success btn-block"><span class="glyphicon glyphicon-log-in"></span> <?php echo $Save; ?></button>
+								<button type="submit" name="signup" class="btn btn-info btn-block"><span class="glyphicon glyphicon-pencil"></span> <?php echo $Save; ?></button>
 								<hr>
+								<a href="login.php" class="btn btn-success btn-block"> <span class="glyphicon glyphicon-log-in"></span> <?php echo
+                                                                                                                                        $SignIn; ?></a>
 
 							</fieldset>
 						</form>
@@ -303,7 +305,7 @@ if (isset($_POST['signup'])) {
 		</div>
 		<div class="row text-center">
 
-			<small>Powered By Developer Kuljeet Singh</small>
+			<!-- <small>Powered By Team 7</small> -->
 		</div>
 	</div>
 
