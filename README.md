@@ -1,4 +1,4 @@
-#   Đề tài: Finance - Expense Management
+#   19N12 - TEAM 3 - Finance: Expense Management
 
 ## Danh sách thành viên:
 -   Cao Minh Trí 
